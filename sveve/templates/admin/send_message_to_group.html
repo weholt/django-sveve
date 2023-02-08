@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h3>Message to {{group.name}}:</h3>
+    <textarea name="message" cols=50 rows=5 maxlength="1100" autofocus></textarea>
+    <br>
+
+    <input type="hidden" name="action" value="send_message" />
+    <input type="submit" name="apply" id="apply" value="Send message"/>
+  </form>
+{% endblock %}

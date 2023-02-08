@@ -2,6 +2,15 @@
 
 {% block content %}
     <div>
+        <h2>Import Sveve contacts from file</h2>
+        <p>You can import contacts into the Sveve app from an Excel/CSV-file as long as it has only three columns;
+            <ul>
+                <li>First name</li>
+                <li>Last name</li>
+                <li>Mobile phone</li>
+            </ul>
+            The columns should be separated by a comma and the file should be UTF-8 encoded.
+        </p>
         <form action="." method="POST" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}

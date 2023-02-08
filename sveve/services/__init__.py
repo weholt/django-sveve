@@ -1,13 +1,15 @@
 import importlib
 import inspect
-from typing import List  # Optional, Tuple,
+import json
+from typing import Iterable, List  # Optional, Tuple,
 
 import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.http import HttpRequest
 
 from sveve.contact_provider import ContactProviderBase
-from sveve.models import Contact, Message
+from sveve.models import Contact, Group, Message
 
 User = get_user_model()
 
@@ -30,8 +32,15 @@ def send_message(sender: User, sender_text: str, message: str, recipients: List[
             },
         )
         if r.status_code == 200:
-            for recipient in recipients:
-                msg.recipients.add(recipient)
+            response = json.loads(r.content)
+            if "fatalError" in response.get("response"):
+                msg.status = "not-sent"
+                msg.status_message = "Status code: %s. Fatal error: %s" % (r.status_code, response.get("response", {}).get("fatalError"))
+            else:
+                sentOk = response.get("response", {}).get("msgOkCount")
+                msg.status_message = "Sent %s message(s)" % sentOk
+                for recipient in recipients:
+                    msg.recipients.add(recipient)
         else:
             msg.status = "not-sent"
             msg.status_message = "Status code: %s" % r.status_code
@@ -52,3 +61,8 @@ def get_contacts():
                         yield contact
             except Exception as ex:
                 print("ex", ex)
+
+
+def send_group_message(request: HttpRequest, message: str, groups: Iterable[Group]) -> Message:
+    recipients = Contact.objects.filter(groups__in=[group.id for group in groups])
+    return send_message(request.user, settings.SVEVE_SENDER_TEXT, message, list(set(recipients)))
