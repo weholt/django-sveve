@@ -83,6 +83,17 @@ Start the webserver and go to the admin pages:
 $ python manage.py runserver
 ```
 
+## Run the example project
+This assumes you already have Python 3.9+ installed:
+```
+$ git clone http://github.com/weholt/django-sveve.git
+$ cd django-sveve
+$ python manage.py migrate
+$ python manage.py createsuperuser
+$ python manage.py runserver
+```
+Visit http://localhost:8000 in your browser.
+
 ### Optional Configuration
 
 * TODO: document the contacts-provider section.
