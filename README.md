@@ -1,6 +1,6 @@
 # django-sveve
 
-A reusable django app for sending SMS using Sveve.no's API.
+A reusable django app for sending SMS using [Sveve.no's API](https://sveve.no/apidok/send).
 
 * [Sveve.no](http://sveve.no/)
 * [API documentation](https://sveve.no/apidok/)
