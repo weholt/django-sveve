@@ -35,7 +35,10 @@ MESSAGE_STATUS_OPTIONS = (("sent", "Sent"), ("not-sent", "Not sent"))
 
 
 class Message(models.Model):
-    "The message sent to recipients"
+    """
+    The message sent to recipients
+    """
+
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     sender_text = models.CharField(max_length=11, null=True, blank=True)
     text = models.TextField(max_length=1071)
