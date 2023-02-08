@@ -67,14 +67,18 @@ class ContactAdmin(admin.ModelAdmin):
 
     def import_csv(self, request):
         if request.method == "POST":
-            for line in request.FILES["csv_file"].read().decode("utf-8").split("\n"):
-                try:
-                    first_name, last_name, mobile_phone = line.split(",")
-                    Contact.objects.update_or_create(first_name=first_name, last_name=last_name, defaults={"mobile_phone": mobile_phone})
-                except Exception as ex:
-                    print("Error parsing '%s': %s" % (line, ex))
-            self.message_user(request, "Your csv file has been imported")
-            return redirect(reverse("admin:sveve_contact_changelist"))
+            try:
+                for line in request.FILES["csv_file"].read().decode("utf-8").split("\n"):
+                    try:
+                        first_name, last_name, mobile_phone = line.split(",")
+                        Contact.objects.update_or_create(first_name=first_name, last_name=last_name, defaults={"mobile_phone": mobile_phone})
+                    except Exception as ex:
+                        print("Error parsing '%s': %s" % (line, ex))
+                self.message_user(request, "Your csv file has been imported")
+            except UnicodeDecodeError:
+                self.message_user(request, "Your csv file has the wrong encoding. It needs to be UTF-8.")
+            finally:
+                return redirect(reverse("admin:sveve_contact_changelist"))
         form = CsvImportForm()
         payload = {"form": form}
         return render(request, "admin/csv_form.html", payload)
