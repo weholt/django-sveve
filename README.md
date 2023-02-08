@@ -1,9 +1,15 @@
 # django-sveve
 
-Adds support for sending SMS using Sveve.no's API using a reusable django app.
+A reusable django app for sending SMS using Sveve.no's API.
 
 * [Sveve.no](http://sveve.no/)
 * [API documentation](https://sveve.no/apidok/)
+
+## The state of this MVP
+
+ * It can send SMS to multiple recipients
+ * You can defined groups of contacts
+ * Contacts can be imported from a spreadsheet/Excel/CSV file
 
 ## Installation
 
@@ -33,9 +39,17 @@ urlpatterns = [
 ]
 ```
 
-Install [django-environ](http://django-environ/) to separate your account information from the settings.py file:
+Create an .env file for your account information:
+```
+SVEVE_API_URL="https://sveve.no/SMS/SendMessage"
+SVEVE_USERNAME="<your username at seve>"
+SVEVE_PASSWORD="<your password at sveve>"
+SVEVE_SENDER_TEXT="<the title of each sms you send. NB! Make it short>"
+```
+The .env file should be located in the same folder as django's manage.py.
 
-Add django-environ to your settings.py, something like this or go by the django-environ documentation:
+Install [django-environ](http://django-environ/) to separate your account information from the settings.py file:
+Configure django-environ to read your .env file inyour settings.py, something like this or go by the django-environ documentation:
 ```
 import environ
 
@@ -51,14 +65,6 @@ SVEVE_API_URL = env("SVEVE_API_URL")
 SVEVE_USERNAME = env("SVEVE_USERNAME")
 SVEVE_PASSWORD = env("SVEVE_PASSWORD")
 SVEVE_SENDER_TEXT = env("SVEVE_SENDER_TEXT")
-```
-
-Create an .env file for your account information:
-```
-SVEVE_API_URL="https://sveve.no/SMS/SendMessage"
-SVEVE_USERNAME="<your username at seve>"
-SVEVE_PASSWORD="<your password at sveve>"
-SVEVE_SENDER_TEXT="<the title of each sms you send. NB! Make it short>"
 ```
 
 Execute any migrations to add the Sveve specific models:
@@ -80,7 +86,6 @@ $ python manage.py runserver
 
 * TODO: document the contacts-provider section.
 
-A more
 ## Version history
 
 0.1.0 :
