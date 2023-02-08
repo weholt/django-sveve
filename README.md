@@ -10,6 +10,7 @@ A reusable django app for sending SMS using Sveve.no's API.
  * It can send SMS to multiple recipients
  * You can defined groups of contacts
  * Contacts can be imported from a spreadsheet/Excel/CSV file
+ * Contacts can be imported/exported by implementing a Contact Provider (documentation of that feature is coming soon)
 
 ## Installation
 
