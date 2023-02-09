@@ -8,4 +8,4 @@ recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-include sveve/static *
-recursive-include seve/templates *
+recursive-include sveve/templates *
