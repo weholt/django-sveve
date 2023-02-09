@@ -10,7 +10,7 @@ A reusable django app for sending SMS using [Sveve.no's API](https://sveve.no/ap
  * It can send SMS to multiple recipients.
  * You can define groups of contacts and send a SMS to several groups at a time.
  * Contacts can be imported from a spreadsheet/Excel/CSV file.
- * Contacts can be imported/exported by implementing a Contact Provider (documentation of that feature is coming soon).
+ * Contacts can be synchronized with other sources by implementing a custom contacts provider, documented below.
 
 ## Installation
 
@@ -126,15 +126,6 @@ class TestContactProvider(ContactProviderBase):
             ("Arne", "Weholt", "90866360"),
         ]:
             yield CustomContact(first_name=first_name, last_name=last_name, mobile_phone=mobile_phone)
-
-
-class CustomContactProviderTestCase(TestCase):
-
-    def test_custom_contact_provider(self):
-        provider = TestContactProvider()
-        provider.sync_contacts()
-        self.assertEqual(Contact.objects.all().count(), 6)
-
 ```
 Calling the sync_contacts method on the TestContactProvider class will synch the contacts with whatever comes out of the custom provider class.
 to make your custom contact provider available to use in the django admin, just add the string-representation of the file containing your provider
