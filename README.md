@@ -127,8 +127,8 @@ class TestContactProvider(ContactProviderBase):
         ]:
             yield CustomContact(first_name=first_name, last_name=last_name, mobile_phone=mobile_phone)
 ```
-Calling the sync_contacts method on the TestContactProvider class will synch the contacts with whatever comes out of the custom provider class.
-to make your custom contact provider available to use in the django admin, just add the string-representation of the file containing your provider
+By implementing a class like the TestContactProvider above you'll be able to synch the contacts with whatever comes out of the custom provider class.
+To make your custom contact provider available to use in the django admin, just add the string-representation of the file containing your provider
 in the SVEVE_CONTACTS_PROVIDERS list. For instance, if your providers are available in a file called mycustomproviders inside a module called providers
 
 ```
