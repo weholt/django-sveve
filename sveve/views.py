@@ -13,7 +13,7 @@ def send_message_to_contact(request, recipient_phone_number):
         msg = send_message(request.user, settings.SVEVE_SENDER_TEXT, message_text, queryset)
         messages.add_message(request, messages.SUCCESS, msg.status_message)
         return redirect("admin:sveve_contact_changelist")
-    return render(request, "admin/send_message_to_contact.html", context={"contact": queryset.first()})
+    return render(request, "admin/send_message_to_contact.html", context={"contact": Contact.objects.get(mobile_phone=recipient_phone_number)})
 
 
 def send_message_to_group(request, group_id):

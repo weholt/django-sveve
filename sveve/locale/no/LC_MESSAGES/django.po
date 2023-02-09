@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 14:48+0100\n"
+"PO-Revision-Date: 2023-02-09 14:57+0000\n"
+"Last-Translator:   <thomas@weholt.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\sveve\admin.py:28
+msgid "Sends a message to the selected contacts"
+msgstr "Send en melding til valgte kontakter"
+
+#: .\sveve\admin.py:35 .\sveve\admin.py:110
+msgid "Sent message to {} contacts"
+msgstr "Sendte melding til {} kontakter"
+
+#: .\sveve\admin.py:37 .\sveve\admin.py:110
+#, python-format
+msgid "Failed to send messag: %s"
+msgstr "Kunne ikke sende melding: %s"
+
+#: .\sveve\admin.py:42
+msgid "Creates a new group from the selected contacts"
+msgstr "Lag en ny gruppe fra valgte kontakter"
+
+#: .\sveve\admin.py:56 .\sveve\admin.py:58 .\sveve\admin.py:116
+#: .\sveve\admin.py:118
+msgid "Send SMS"
+msgstr "Send SMS"
+
+#: .\sveve\admin.py:82
+#, python-format
+msgid "Your csv file has been imported. Imported %s contacts."
+msgstr "Filen er importert. Opprettet/oppdaterte %s kontakter."
+
+#: .\sveve\admin.py:84
+msgid "Your csv file has the wrong encoding. It needs to be UTF-8."
+msgstr ""
+"Filen du forsøker importere har feil enkoding. Må være i UTF-8 format."
+
+#: .\sveve\admin.py:86
+#, python-format
+msgid "Your csv file could not be imported: %s"
+msgstr "Filen kunne ikke importeres: %s"
+
+#: .\sveve\admin.py:103
+msgid "Sends a message to contacts in the selected groups"
+msgstr "Send en melding til kontaktene i valgte grupper"
+
+#: .\sveve\models.py:11 .\sveve\templates\admin\csv_form.html:9
+msgid "First name"
+msgstr "Fornavn"
+
+#: .\sveve\models.py:12 .\sveve\templates\admin\csv_form.html:10
+msgid "Last name"
+msgstr "Etternavn"
+
+#: .\sveve\models.py:13
+msgid "Mobile phone number"
+msgstr "Mobiletelefon nummer"
+
+#: .\sveve\models.py:25
+msgid "Group name"
+msgstr "Gruppe navn"
+
+#: .\sveve\models.py:26
+msgid "members"
+msgstr "medlemmer"
+
+#: .\sveve\models.py:35
+msgid "Sent"
+msgstr "Sendt"
+
+#: .\sveve\models.py:35
+msgid "Not sent"
+msgstr "Ikke sendt"
+
+#: .\sveve\models.py:43
+msgid "Sender"
+msgstr "Avsender"
+
+#: .\sveve\models.py:44
+msgid "Sender Text"
+msgstr "Avsender tekst"
+
+#: .\sveve\models.py:46 .\sveve\templates\admin\send_message.html:13
+msgid "Recipients"
+msgstr "Mottagere"
+
+#: .\sveve\models.py:47
+msgid "Created"
+msgstr "Opprettet"
+
+#: .\sveve\models.py:48
+msgid "Status"
+msgstr "Status"
+
+#: .\sveve\models.py:49
+msgid "Status message"
+msgstr "Status melding"
+
+#: .\sveve\services\__init__.py:39
+#, python-format
+msgid "Status code: %s. Fatal error: %s"
+msgstr "Status kode: %s. Fatal feil: %s"
+
+#: .\sveve\services\__init__.py:42
+#, python-format
+msgid "Sent %s message(s)"
+msgstr "Sendte %s melding(er)"
+
+#: .\sveve\services\__init__.py:47
+#, python-format
+msgid "Status code: %s"
+msgstr "Status kode: %s"
+
+#: .\sveve\templates\admin\contact_changelist.html:7
+msgid "Import contacts from file"
+msgstr "Importer kontakter fra fil"
+
+#: .\sveve\templates\admin\create_group.html:6
+msgid "Create a new group"
+msgstr "Lag en ny gruppe"
+
+#: .\sveve\templates\admin\create_group.html:14
+msgid "Create new group"
+msgstr "Lag ny gruppe"
+
+#: .\sveve\templates\admin\csv_form.html:6
+msgid "Import Sveve contacts from file"
+msgstr "Importer Sveve kontakter fra fil"
+
+#: .\sveve\templates\admin\csv_form.html:7
+msgid ""
+"You can import contacts into the Sveve app from an Excel/CSV-file as long as"
+" it has only three columns;"
+msgstr ""
+"Du kan importere kontakter inn i appen fra Excel eller komma separert fil så"
+" lenge de har tre kolonner;"
+
+#: .\sveve\templates\admin\csv_form.html:11
+msgid "Mobile phone"
+msgstr "Mobil telefon"
+
+#: .\sveve\templates\admin\csv_form.html:13
+msgid ""
+"The columns should be separated by a comma and the file should be UTF-8 "
+"encoded."
+msgstr ""
+"Kolonnene skal være separert av komma og filen skal ha UTF-8 enkoding."
+
+#: .\sveve\templates\admin\csv_form.html:19
+msgid "Upload CSV"
+msgstr "Last opp fil"
+
+#: .\sveve\templates\admin\send_message.html:7
+msgid "Message"
+msgstr "Melding"
+
+#: .\sveve\templates\admin\send_message.html:12
+#: .\sveve\templates\admin\send_message_to_contact.html:12
+#: .\sveve\templates\admin\send_message_to_group.html:12
+msgid "Send message"
+msgstr "Send melding"
+
+#: .\sveve\templates\admin\send_message_to_contact.html:7
+#: .\sveve\templates\admin\send_message_to_group.html:7
+msgid "Message to"
+msgstr "Melding til"

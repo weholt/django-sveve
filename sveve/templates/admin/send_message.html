@@ -1,21 +1,22 @@
 {% extends "admin/base_site.html" %}
+{% load i18n %}
 
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <h3>Message:</h3>
-    <textarea name="message" cols=50 rows=5 maxlength="1100" autofocus></textarea>
+    <h3>{% trans 'Message' %}:</h3>
+    {% include 'admin/partials/message_box.html' %}
     <br>
 
     <input type="hidden" name="action" value="send_message" />
-    <input type="submit" name="apply" id="apply" value="Send message"/>
-    <h3>Recipients:</h3>
+    <input type="submit" name="apply" id="apply" value="{% trans 'Send message' %}"/>
+    <h3>{% trans 'Recipients' %}:</h3>
     <ul>
     {% for order in orders %}
     <li>{{ order }}</li>
     <input type="hidden" name="_selected_action" value="{{ order.pk }}" />
     {% endfor %}
     </ul>
-
   </form>
+
 {% endblock %}

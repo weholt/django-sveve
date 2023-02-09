@@ -1,13 +1,14 @@
 {% extends "admin/base_site.html" %}
+{% load i18n %}
 
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <h3>Message to {{contact.first_name}}, {{contact.last_name}}:</h3>
-    <textarea name="message" cols=50 rows=5 maxlength="1100" autofocus></textarea>
+    <h3>{% trans 'Message to' %} {{contact.first_name}}, {{contact.last_name}}:</h3>
+    {% include 'admin/partials/message_box.html' %}
     <br>
 
     <input type="hidden" name="action" value="send_message" />
-    <input type="submit" name="apply" id="apply" value="Send message"/>
+    <input type="submit" name="apply" id="apply" value="{% trans 'Send message' %}"/>
   </form>
 {% endblock %}

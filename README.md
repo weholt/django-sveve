@@ -94,11 +94,66 @@ $ python manage.py runserver
 ```
 Visit http://localhost:8000 in your browser.
 
-### Optional Configuration
+### Providing contacts from another source than file
 
-* TODO: document the contacts-provider section.
+*This section assumes knowledge of python programming, python modules and packages.*
+
+Consider this example of a custom contacts provider, snipped from the test.py file in the sveve app:
+```
+from dataclasses import dataclass
+from typing import Iterable
+
+from django.test import TestCase
+
+from .contact_provider import ContactBase, ContactProviderBase
+from .models import Contact
+
+
+@dataclass
+class CustomContact:
+    first_name: str
+    last_name: str
+    mobile_phone: str
+
+
+class TestContactProvider(ContactProviderBase):
+    """ """
+
+    def get_contacts(self) -> Iterable[ContactBase]:
+        for first_name, last_name, mobile_phone in [
+            ("Thomas", "Weholt", "90866360"),
+            # lots of more contacts generated
+            ("Arne", "Weholt", "90866360"),
+        ]:
+            yield CustomContact(first_name=first_name, last_name=last_name, mobile_phone=mobile_phone)
+
+
+class CustomContactProviderTestCase(TestCase):
+
+    def test_custom_contact_provider(self):
+        provider = TestContactProvider()
+        provider.sync_contacts()
+        self.assertEqual(Contact.objects.all().count(), 6)
+
+```
+Calling the sync_contacts method on the TestContactProvider class will synch the contacts with whatever comes out of the custom provider class.
+to make your custom contact provider available to use in the django admin, just add the string-representation of the file containing your provider
+in the SVEVE_CONTACTS_PROVIDERS list. For instance, if your providers are available in a file called mycustomproviders inside a module called providers
+
+```
+SVEVE_CONTACTS_PROVIDERS = ["providers.mycustomproviders"]
+```
+On disk this would look like a folder called providers in the same folder as manage.py, with at least __init__.py inside it in addition to your file mycustomproviders.py. Hope that was clear enough.
+
+If you've done everything correctly, you should click the "Synchronize contacts" inside the admin and see the contacts from your providers appear.
+
 
 ## Version history
 
 0.1.0 :
- - Initial MVP - release
+ - Initial MVP - release.
+
+ 0.2.0 :
+ - Code refactoring, better handling of exceptions on import of contacts from file.
+ - Added character counting to sms message field.
+ - Added example code for custom contacts provider and some documentation for it.

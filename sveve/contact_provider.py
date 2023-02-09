@@ -1,10 +1,10 @@
 import abc
-from dataclasses import dataclass
-from typing import Iterable
+from typing import Iterable, Protocol
+
+from .models import Contact
 
 
-@dataclass
-class ContactBase:
+class ContactBase(Protocol):
     first_name: str
     last_name: str
     mobile_phone: str
@@ -17,9 +17,6 @@ class ContactProviderBase(abc.ABC):
     def get_contacts(self) -> Iterable[ContactBase]:
         pass
 
-
-class TestContactProvider(ContactProviderBase):
-    """ """
-
-    def get_contacts(self) -> Iterable[ContactBase]:
-        return [ContactBase(first_name="Thomas", last_name="Weholt", mobile_phone="90866360")]
+    def sync_contacts(self) -> None:
+        for contact in self.get_contacts():
+            Contact.objects.update_or_create(first_name=contact.first_name, last_name=contact.last_name, defaults={"mobile_phone": contact.mobile_phone})

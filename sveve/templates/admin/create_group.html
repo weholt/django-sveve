@@ -1,8 +1,9 @@
 {% extends 'admin/base.html' %}
+{% load i18n %}
 
 {% block content %}
     <div>
-        <h2>Create a new group</h2>
+        <h2>>{% trans 'Create a new group' %}</h2>
         <form action="" method="POST" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}
@@ -10,7 +11,7 @@
             <input type="hidden" name="_selected_action" value="{{ order.pk }}" />
             {% endfor %}
             <input type="hidden" name="action" value="create_group" />
-            <input type="submit" name="apply" id="apply" value="Create new group"/>
+            <input type="submit" name="apply" id="apply" value=">{% trans 'Create new group' %}"/>
         </form>
     </div>
 
