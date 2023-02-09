@@ -3,7 +3,7 @@
 
 {% block content %}
     <div>
-        <h2>>{% trans 'Create a new group' %}</h2>
+        <h2>{% trans 'Create a new group' %}</h2>
         <form action="" method="POST" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}
