@@ -1,6 +1,8 @@
 import abc
 from typing import Iterable, Protocol
 
+from django.db import transaction
+
 from .models import Contact
 
 
@@ -18,5 +20,9 @@ class ContactProviderBase(abc.ABC):
         pass
 
     def sync_contacts(self) -> None:
-        for contact in self.get_contacts():
-            Contact.objects.update_or_create(first_name=contact.first_name, last_name=contact.last_name, defaults={"mobile_phone": contact.mobile_phone})
+        Contact.objects.all().update(active=False)
+        with transaction.atomic():
+            for contact in self.get_contacts():
+                Contact.objects.update_or_create(
+                    first_name=contact.first_name, last_name=contact.last_name, defaults={"mobile_phone": contact.mobile_phone, "active": True}
+                )

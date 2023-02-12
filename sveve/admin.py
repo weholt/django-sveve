@@ -21,7 +21,8 @@ class CreateGroupForm(forms.Form):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ["last_name", "first_name", "mobile_phone", "send_message_to_contact"]
+    list_display = ["last_name", "first_name", "mobile_phone", "send_message_to_contact", "active"]
+    list_filter = ["active"]
     change_list_template = "admin/contact_changelist.html"
     search_fields = ["last_name", "first_name", "mobile_phone"]
     actions = ["send_message", "create_group"]
