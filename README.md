@@ -148,3 +148,7 @@ If you've done everything correctly, you should click the "Synchronize contacts"
  - Code refactoring, better handling of exceptions on import of contacts from file.
  - Added character counting to sms message field.
  - Added example code for custom contacts provider and some documentation for it.
+
+0.3.0:
+ - Fixed a few bugs.
+ - Added a source field to Contacts to indicate the source when provided by a custom contacts provider.

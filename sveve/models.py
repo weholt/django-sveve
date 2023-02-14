@@ -11,6 +11,7 @@ class Contact(models.Model):
     first_name = models.CharField(max_length=100, verbose_name=_("First name"))
     last_name = models.CharField(max_length=100, verbose_name=_("Last name"))
     mobile_phone = models.CharField(max_length=100, verbose_name=_("Mobile phone number"))
+    source = models.CharField(max_length=50, null=True, verbose_name=_("Source"))
     active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
