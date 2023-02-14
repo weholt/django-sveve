@@ -114,6 +114,7 @@ class CustomContact:
     first_name: str
     last_name: str
     mobile_phone: str
+    source: str = ""
 
 
 class TestContactProvider(ContactProviderBase):
