@@ -120,12 +120,12 @@ class TestContactProvider(ContactProviderBase):
     """ """
 
     def get_contacts(self) -> Iterable[ContactBase]:
-        for first_name, last_name, mobile_phone in [
-            ("Thomas", "Weholt", "90866360"),
+        for first_name, last_name, mobile_phone, source in [
+            ("Thomas", "Weholt", "90866360", "Members"),
             # lots of more contacts generated
-            ("Arne", "Weholt", "90866360"),
+            ("Arne", "Weholt", "90866360", "Guests"),
         ]:
-            yield CustomContact(first_name=first_name, last_name=last_name, mobile_phone=mobile_phone)
+            yield CustomContact(first_name=first_name, last_name=last_name, mobile_phone=mobile_phone, source=source)
 ```
 By implementing a class like the TestContactProvider above you'll be able to synch the contacts with whatever comes out of the custom provider class.
 To make your custom contact provider available to use in the django admin, just add the string-representation of the file containing your provider
