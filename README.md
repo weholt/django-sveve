@@ -103,8 +103,6 @@ Consider this example of a custom contacts provider, snipped from the test.py fi
 from dataclasses import dataclass
 from typing import Iterable
 
-from django.test import TestCase
-
 from .contact_provider import ContactBase, ContactProviderBase
 from .models import Contact
 

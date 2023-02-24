@@ -24,8 +24,9 @@ class ContactProviderBase(abc.ABC):
         with transaction.atomic():
             Contact.objects.all().update(active=False)
             for contact in self.get_contacts():
-                Contact.objects.update_or_create(
-                    first_name=contact.first_name,
-                    last_name=contact.last_name,
-                    defaults={"mobile_phone": contact.mobile_phone, "active": True, "source": contact.source},
-                )
+                if contact.mobile_phone.isdigit():
+                    Contact.objects.update_or_create(
+                        first_name=contact.first_name,
+                        last_name=contact.last_name,
+                        defaults={"mobile_phone": contact.mobile_phone, "active": True, "source": contact.source},
+                    )
